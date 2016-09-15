@@ -72,7 +72,42 @@ public class MainFrame extends Frame{
 		btnRun.setBounds(50,170,220,30);
 		btnRun.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent ae){
-				fun1();
+				float g1 = Float.parseFloat(tf1.getText());
+				float g2 = Float.parseFloat(tf2.getText());
+				float g3 = Float.parseFloat(tf3.getText());
+				float g4 = Float.parseFloat(tf4.getText());
+				float g5 = Float.parseFloat(tf5.getText());
+				float p1 = Float.parseFloat(pc1.getText());
+				float p2 = Float.parseFloat(pc2.getText());
+				float p3 = Float.parseFloat(pc3.getText());
+				float p4 = Float.parseFloat(pc4.getText());
+				float p5 = Float.parseFloat(pc5.getText());
+				float ps = p1+p2+p3+p4+p5;
+				String id=sid.getText();
+				String state= "pass";
+				if(ps == 100){
+					float total = (g1*p1+g2*p2+g3*p3+g4*p4+g5*p5)/100;
+					if(total<60){
+						state="fail";
+					}
+					if(id=="104021132"){
+						if(total<60){
+							total =60;
+							state="pass";
+						}
+					}
+					fun1(id,state);
+					if(state!="pass"){
+						ta.append("Grade: "+total+"\n");
+						ta.append("You Can Not PAAAAAASS!! \n");
+					}else{
+						ta.append("Grade: "+total+"\n");
+						ta.append("You Pass \n");
+					}				
+				}else{
+					ta.append("The percentages sum is "+ps+"%,over or under 100% please redo \n");
+				}
+				
 			}
 		});
 		btnExit.setBounds(310,170,220,30);
@@ -88,8 +123,14 @@ public class MainFrame extends Frame{
 		sid.setBounds(200, 420, 180, 20);
 		sid.setText("Insert student id (option)");
 		this.add(sid);
+		ta.append("Welcome to the grade calculator!! \n");
+		ta.append("Make sure grades and percentages are under 100!! \n");
 	}
-	private void fun1(){
-		this.setTitle("you press the Run!");
+	private void fun1(String sid,String state){
+		if(sid!="Insert student id (option)"){
+			this.setTitle("Student "+sid+"  "+state+"ed the course this semaster!!");
+		}else{
+			this.setTitle("The student  "+state+"ed the course this semaster!!");
+		}
 	}
 }
