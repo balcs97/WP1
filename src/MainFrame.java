@@ -18,8 +18,8 @@ public class MainFrame extends Frame{
 	private Label lab1=new Label("Insert Grades");
 	private Label lab2=new Label("¡õInsert Percentages % for each grades¡õ");
 	private Label lab3=new Label("%");
-	private Button btnRun = new Button("­pºâ");
-	private Button btnExit= new Button("µ²§ô");
+	private Button btnRun = new Button("Run");
+	private Button btnExit= new Button("Exit");
 	private TextArea ta=new TextArea();
 	public MainFrame(){
 		initComp();
@@ -69,9 +69,27 @@ public class MainFrame extends Frame{
 		this.add(pc3);
 		this.add(pc4);
 		this.add(pc5);
-		btnRun.setBounds(50,150,220,30);
-		btnExit.setBounds(310,150,220,30);
+		btnRun.setBounds(50,170,220,30);
+		btnRun.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent ae){
+				fun1();
+			}
+		});
+		btnExit.setBounds(310,170,220,30);
+		btnExit.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent ae){
+				System.exit(0);
+			}
+		});
 		this.add(btnRun);
 		this.add(btnExit);
+		ta.setBounds(50, 220, 480, 180);
+		this.add(ta);
+		sid.setBounds(200, 420, 180, 20);
+		sid.setText("Insert student id (option)");
+		this.add(sid);
+	}
+	private void fun1(){
+		this.setTitle("you press the Run!");
 	}
 }
